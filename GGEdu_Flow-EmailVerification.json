@@ -1,0 +1,102 @@
+{
+  "name": "GGEdu_Flow-EmailVerification",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "email-verification",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -320,
+        -16
+      ],
+      "id": "2a559f9d-d533-4c19-8eeb-c1442b7d8b85",
+      "name": "Webhook",
+      "webhookId": "516e671e-5c53-4c51-bb52-026f614f7fd8"
+    },
+    {
+      "parameters": {
+        "fromEmail": "noreply@gmail.com",
+        "toEmail": "={{ $json.body.email }}",
+        "subject": "GGEdu - Email Adresinizi Doğrulayın",
+        "html": "=<!DOCTYPE html>\n<html>\n<body style=\"font-family: 'DM Sans', Arial, sans-serif; background: #f8f7f4; margin: 0; padding: 40px 20px;\">\n  <div style=\"max-width: 520px; margin: 0 auto; background: #ffffff; border-radius: 16px; border: 1px solid #e2e8f0; overflow: hidden;\">\n    \n    <!-- Header -->\n    <div style=\"background: linear-gradient(135deg, #1e3a8a, #2563eb); padding: 32px; text-align: center;\">\n      <h1 style=\"color: white; margin: 0; font-size: 24px; font-weight: 700;\">EduFlow</h1>\n      <p style=\"color: rgba(255,255,255,0.8); margin: 8px 0 0; font-size: 14px;\">Öğrenmenin en güzel yolu</p>\n    </div>\n\n    <!-- Body -->\n    <div style=\"padding: 40px 32px;\">\n      <h2 style=\"color: #1a1a2e; font-size: 20px; margin: 0 0 12px;\">\n        Merhaba {{ $json.body.firstName }},\n      </h2>\n      <p style=\"color: #64748b; font-size: 15px; line-height: 1.6; margin: 0 0 28px;\">\n        EduFlow'a hoş geldin! Hesabını aktif etmek için aşağıdaki butona tıkla.\n        Bu link <strong>24 saat</strong> geçerlidir.\n      </p>\n\n      <a href=\"http://localhost:5292/api/auth/verify?token={{ $json.body.token }}\"\n         style=\"display: block; background: #2563eb; color: #ffffff; text-decoration: none;\n                padding: 14px 24px; border-radius: 10px; text-align: center;\n                font-size: 15px; font-weight: 600;\">\n        Email Adresimi Doğrula\n      </a>\n\n      <p style=\"color: #94a3b8; font-size: 13px; margin: 24px 0 0; text-align: center;\">\n        Bu emaili sen istemediysen görmezden gelebilirsin.\n      </p>\n    </div>\n\n    <!-- Footer -->\n    <div style=\"background: #f8fafc; border-top: 1px solid #e2e8f0; padding: 20px 32px; text-align: center;\">\n      <p style=\"color: #94a3b8; font-size: 12px; margin: 0;\">\n        © 2025 EduFlow. Tüm hakları saklıdır.\n      </p>\n    </div>\n\n  </div>\n</body>\n</html>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        -112,
+        -16
+      ],
+      "id": "5d413fc3-1a50-4445-9179-9f6cce42980d",
+      "name": "Send an Email",
+      "webhookId": "ded893cb-1e1c-4a1b-bc81-324af59ff019",
+      "credentials": {
+        "smtp": {
+          "id": "RVnwj7tvaLqUEqs6",
+          "name": "SMTP account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{ \"success\": true }",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        96,
+        -16
+      ],
+      "id": "646b1add-b97d-4f9a-975d-42f8a2b3dadb",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Send an Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send an Email": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "5e7fa5a0-dfa5-4a7c-a85a-a05c36325e7f",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "efb454df91df3676edc71e596456dc4a8d87897bd936e45bdced8fff39bb67a4"
+  },
+  "nodeGroups": [],
+  "id": "dZllJwZOFIHb3eBz",
+  "tags": []
+}
