@@ -1,6 +1,6 @@
 # GGEdu_n8n_mail_verification
 
-Booking notification(creating meeting and send to users) after booking.
+Booking notification(create meeting and send to users) after booking.
 <img width="1496" height="696" alt="image" src="https://github.com/user-attachments/assets/300f1b4e-f9a1-4956-9cec-1d2c2cb32056" />
 
 Email verification after register.
