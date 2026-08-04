@@ -11,8 +11,8 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
-        -608,
-        -32
+        -768,
+        -48
       ],
       "id": "b3ad596c-d30a-40fd-a34e-4f1b79756fbc",
       "name": "Webhook",
@@ -46,8 +46,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        -368,
-        -32
+        -480,
+        -48
       ],
       "id": "95b06eb0-665b-4477-a733-4ba81251b922",
       "name": "If"
@@ -61,40 +61,25 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.5,
       "position": [
-        -160,
-        -48
+        -176,
+        -64
       ],
       "id": "75072ee8-c088-4549-b6ab-e86dc62acc3e",
       "name": "Respond to Webhook"
     },
     {
       "parameters": {
-        "respondWith": "json",
-        "responseBody": "{ \"success\": false }",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.respondToWebhook",
-      "typeVersion": 1.5,
-      "position": [
-        -272,
-        176
-      ],
-      "id": "95ce18dd-6975-4b0a-a7d0-0a31b54741c7",
-      "name": "Respond to Webhook1"
-    },
-    {
-      "parameters": {
         "fromEmail": "noreply@gmail.com",
-        "toEmail": "={{ $json.TeacherEmail }}",
-        "subject": "EduFlow - Ders Onaylandı",
-        "html": "=<!DOCTYPE html>\n<html>\n<body style=\"font-family: Arial, sans-serif; background: #f8f7f4; padding: 40px 20px;\">\n  <div style=\"max-width: 520px; margin: 0 auto; background: #fff; border-radius: 16px; border: 1px solid #e2e8f0; overflow: hidden;\">\n    \n    <div style=\"background: linear-gradient(135deg, #1e3a8a, #2563eb); padding: 32px; text-align: center;\">\n      <h1 style=\"color: white; margin: 0; font-size: 22px;\">EduFlow</h1>\n      <p style=\"color: rgba(255,255,255,0.8); margin: 8px 0 0; font-size: 13px;\">Ders Onayı</p>\n    </div>\n\n    <div style=\"padding: 36px 32px;\">\n      <h2 style=\"color: #1a1a2e; font-size: 18px; margin: 0 0 12px;\">\n        Merhaba {{ $json.TeacherFirstName }},\n      </h2>\n      <p style=\"color: #64748b; font-size: 14px; line-height: 1.6; margin: 0 0 24px;\">\n        <strong>{{ $json.StudentFirstName }}</strong> ile olan dersiniz onaylandı.\n      </p>\n\n      <div style=\"background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; margin-bottom: 24px;\">\n        <table style=\"width: 100%; border-collapse: collapse;\">\n          <tr>\n            <td style=\"padding: 6px 0; color: #94a3b8; font-size: 13px;\">Kurs</td>\n            <td style=\"padding: 6px 0; color: #1a1a2e; font-size: 13px; font-weight: 600; text-align: right;\">{{ $json.CourseName }}</td>\n          </tr>\n          <tr>\n            <td style=\"padding: 6px 0; color: #94a3b8; font-size: 13px;\">Öğrenci</td>\n            <td style=\"padding: 6px 0; color: #1a1a2e; font-size: 13px; font-weight: 600; text-align: right;\">{{ $json.StudentFirstName }}</td>\n          </tr>\n          <tr>\n            <td style=\"padding: 6px 0; color: #94a3b8; font-size: 13px;\">Başlangıç</td>\n            <td style=\"padding: 6px 0; color: #1a1a2e; font-size: 13px; font-weight: 600; text-align: right;\">{{ $json.formattedStart }}</td>\n          </tr>\n          <tr>\n            <td style=\"padding: 6px 0; color: #94a3b8; font-size: 13px;\">Bitiş</td>\n            <td style=\"padding: 6px 0; color: #1a1a2e; font-size: 13px; font-weight: 600; text-align: right;\">{{ $json.formattedEnd }}</td>\n          </tr>\n        </table>\n      </div>\n\n      <a href=\"{{ $json.meetingUrl }}\"\n         style=\"display: block; background: #2563eb; color: #fff; text-decoration: none;\n                padding: 14px; border-radius: 10px; text-align: center; font-size: 14px; font-weight: 600;\">\n        Derse Katıl →\n      </a>\n\n      <p style=\"color: #94a3b8; font-size: 12px; margin: 20px 0 0; text-align: center;\">\n        Meeting linki: {{ $json.meetingUrl }}\n      </p>\n    </div>\n\n    <div style=\"background: #f8fafc; border-top: 1px solid #e2e8f0; padding: 16px 32px; text-align: center;\">\n      <p style=\"color: #94a3b8; font-size: 11px; margin: 0;\">© 2025 EduFlow</p>\n    </div>\n  </div>\n</body>\n</html>",
+        "toEmail": "={{ $json.to }}",
+        "subject": "={{ $json.subject }}",
+        "html": "={{ $json.html }}",
         "options": {}
       },
       "type": "n8n-nodes-base.emailSend",
       "typeVersion": 2.1,
       "position": [
-        288,
-        -144
+        592,
+        -256
       ],
       "id": "78643fd0-92db-4dad-bc5d-1e5c2069eabc",
       "name": "Send an Email to Teacher",
@@ -109,16 +94,16 @@
     {
       "parameters": {
         "fromEmail": "noreply@gmail.com",
-        "toEmail": "={{ $json.StudentEmail }}",
-        "subject": "EduFlow - Ders Onaylandı",
-        "html": "=<!DOCTYPE html>\n<html>\n<body style=\"font-family: Arial, sans-serif; background: #f8f7f4; padding: 40px 20px;\">\n  <div style=\"max-width: 520px; margin: 0 auto; background: #fff; border-radius: 16px; border: 1px solid #e2e8f0; overflow: hidden;\">\n    \n    <div style=\"background: linear-gradient(135deg, #1e3a8a, #2563eb); padding: 32px; text-align: center;\">\n      <h1 style=\"color: white; margin: 0; font-size: 22px;\">EduFlow</h1>\n      <p style=\"color: rgba(255,255,255,0.8); margin: 8px 0 0; font-size: 13px;\">Ders Onayı</p>\n    </div>\n\n    <div style=\"padding: 36px 32px;\">\n      <h2 style=\"color: #1a1a2e; font-size: 18px; margin: 0 0 12px;\">\n        Merhaba {{ $json.StudentFirstName }},\n      </h2>\n      <p style=\"color: #64748b; font-size: 14px; line-height: 1.6; margin: 0 0 24px;\">\n        <strong>{{ $json.TeacherFirstName }}</strong> ile olan dersiniz onaylandı.\n      </p>\n\n      <div style=\"background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; margin-bottom: 24px;\">\n        <table style=\"width: 100%; border-collapse: collapse;\">\n          <tr>\n            <td style=\"padding: 6px 0; color: #94a3b8; font-size: 13px;\">Kurs</td>\n            <td style=\"padding: 6px 0; color: #1a1a2e; font-size: 13px; font-weight: 600; text-align: right;\">{{ $json.CourseName }}</td>\n          </tr>\n          <tr>\n            <td style=\"padding: 6px 0; color: #94a3b8; font-size: 13px;\">Öğrenci</td>\n            <td style=\"padding: 6px 0; color: #1a1a2e; font-size: 13px; font-weight: 600; text-align: right;\">{{ $json.StudentFirstName }}</td>\n          </tr>\n          <tr>\n            <td style=\"padding: 6px 0; color: #94a3b8; font-size: 13px;\">Başlangıç</td>\n            <td style=\"padding: 6px 0; color: #1a1a2e; font-size: 13px; font-weight: 600; text-align: right;\">{{ $json.formattedStart }}</td>\n          </tr>\n          <tr>\n            <td style=\"padding: 6px 0; color: #94a3b8; font-size: 13px;\">Bitiş</td>\n            <td style=\"padding: 6px 0; color: #1a1a2e; font-size: 13px; font-weight: 600; text-align: right;\">{{ $json.formattedEnd }}</td>\n          </tr>\n        </table>\n      </div>\n\n      <a href=\"{{ $json.meetingUrl }}\"\n         style=\"display: block; background: #2563eb; color: #fff; text-decoration: none;\n                padding: 14px; border-radius: 10px; text-align: center; font-size: 14px; font-weight: 600;\">\n        Derse Katıl →\n      </a>\n\n      <p style=\"color: #94a3b8; font-size: 12px; margin: 20px 0 0; text-align: center;\">\n        Meeting linki: {{ $json.meetingUrl }}\n      </p>\n    </div>\n\n    <div style=\"background: #f8fafc; border-top: 1px solid #e2e8f0; padding: 16px 32px; text-align: center;\">\n      <p style=\"color: #94a3b8; font-size: 11px; margin: 0;\">© 2025 EduFlow</p>\n    </div>\n  </div>\n</body>\n</html>",
+        "toEmail": "={{ $json.to}}",
+        "subject": "={{ $json.subject }}",
+        "html": "={{ $json.html }}",
         "options": {}
       },
       "type": "n8n-nodes-base.emailSend",
       "typeVersion": 2.1,
       "position": [
-        288,
-        32
+        592,
+        160
       ],
       "id": "e928782e-ba40-46a7-ab0b-6b8bb5be7637",
       "name": "Send an Email to Student",
@@ -132,16 +117,86 @@
     },
     {
       "parameters": {
-        "jsCode": "const bookingId = $input.first().json.body.BookingId;\nconst startDate = new Date($input.first().json.body.CourseStartDate);\nconst endDate = new Date($input.first().json.body.CourseEndDate);\n\nconst formatDate = (date) => date.toLocaleString('tr-TR', {\n  day: '2-digit', month: 'long', year: 'numeric',\n  hour: '2-digit', minute: '2-digit',\n  timeZone: 'UTC'\n});\n\nreturn [{\n  json: {\n    ...$input.first().json.body,\n    meetingUrl: `https://meet.jit.si/GGEdu-${bookingId}`,\n    formattedStart: formatDate(startDate),\n    formattedEnd: formatDate(endDate),\n  }\n}];"
+        "operation": "executeQuery",
+        "query": "SELECT \"Subject\", \"HtmlBody\"\nFROM \"EmailTemplates\"\nWHERE \"TemplateKey\" = '{{ $json.body.TemplateKey }}'\nAND \"Locale\" = '{{ $json.body.Locale }}'\nLIMIT 1",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        48,
+        -256
+      ],
+      "id": "bc10b000-8307-4fe3-8e20-27d287fd5a1d",
+      "name": "Postgres - Teacher Template",
+      "credentials": {
+        "postgres": {
+          "id": "FcmoWWqnUne4ZjSa",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT \"Subject\", \"HtmlBody\"\nFROM \"EmailTemplates\"\nWHERE \"TemplateKey\" = '{{ $json.body.TemplateKey }}'\nAND \"Locale\" = '{{ $json.body.Locale }}'\nLIMIT 1",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        64,
+        160
+      ],
+      "id": "a000724b-0401-4c41-ac2a-6af22f208298",
+      "name": "Postgres - Student Template",
+      "credentials": {
+        "postgres": {
+          "id": "FcmoWWqnUne4ZjSa",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{ \"success\": false }",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        -352,
+        304
+      ],
+      "id": "95ce18dd-6975-4b0a-a7d0-0a31b54741c7",
+      "name": "Fail Response"
+    },
+    {
+      "parameters": {
+        "jsCode": "const webhookData = $('Webhook').first().json.body;\n\nconst formatDate = (dateStr, locale) => {\n  return new Date(dateStr).toLocaleString(\n    locale === 'tr' ? 'tr-TR' : 'en-GB',\n    { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' }\n  );\n};\n\nconst meetingUrl = `https://meet.jit.si/GGEdu-${webhookData.BookingId}`;\n\n\n// Öğrenci emaili\nconst studentTemplate = $('Postgres - Student Template').first().json;\nconst studentHtml = studentTemplate.HtmlBody\n  .replace(/{{RecipientFirstName}}/g, webhookData.StudentFirstName)\n  .replace(/{{OtherPartyFirstName}}/g, webhookData.TeacherFirstName)\n  .replace(/{{CourseName}}/g, webhookData.CourseName)\n  .replace(/{{FormattedStart}}/g, formatDate(webhookData.CourseStartDate, webhookData.Locale))\n  .replace(/{{FormattedEnd}}/g, formatDate(webhookData.CourseEndDate, webhookData.Locale))\n  .replace(/{{MeetingUrl}}/g, meetingUrl);\n\nreturn {\n  json: {\n      to: webhookData.StudentEmail,\n      subject: studentTemplate.Subject,\n      html: studentHtml, \n  }\n};"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        48,
-        -48
+        288,
+        160
+      ],
+      "id": "ce4447a2-34ab-46df-973f-20ebbe6c3dba",
+      "name": "Create Student Email Model"
+    },
+    {
+      "parameters": {
+        "jsCode": "const webhookData = $('Webhook').first().json.body;\n\nconst formatDate = (dateStr, locale) => {\n  return new Date(dateStr).toLocaleString(\n    locale === 'tr' ? 'tr-TR' : 'en-GB',\n    { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' }\n  );\n};\n\nconst meetingUrl = `https://meet.jit.si/GGEdu-${webhookData.BookingId}`;\n\n// Öğretmen emaili\nconst teacherTemplate = $('Postgres - Teacher Template').first().json;\nconst teacherHtml = teacherTemplate.HtmlBody\n  .replace(/{{RecipientFirstName}}/g, webhookData.TeacherFirstName)\n  .replace(/{{OtherPartyFirstName}}/g, webhookData.StudentFirstName)\n  .replace(/{{CourseName}}/g, webhookData.CourseName)\n  .replace(/{{FormattedStart}}/g, formatDate(webhookData.CourseStartDate, webhookData.Locale))\n  .replace(/{{FormattedEnd}}/g, formatDate(webhookData.CourseEndDate, webhookData.Locale))\n  .replace(/{{MeetingUrl}}/g, meetingUrl);\n\nreturn {\n  json: {\n      to: webhookData.TeacherEmail,\n      subject: teacherTemplate.Subject,\n      html: teacherHtml,\n    }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        288,
+        -256
       ],
       "id": "2649bfcb-2f35-4a7e-9749-4297b39ef2a1",
-      "name": "Create Email Model"
+      "name": "Create Teacher Email Model"
     }
   ],
   "pinData": {},
@@ -168,7 +223,7 @@
         ],
         [
           {
-            "node": "Respond to Webhook1",
+            "node": "Fail Response",
             "type": "main",
             "index": 0
           }
@@ -179,7 +234,12 @@
       "main": [
         [
           {
-            "node": "Create Email Model",
+            "node": "Postgres - Student Template",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Postgres - Teacher Template",
             "type": "main",
             "index": 0
           }
@@ -191,16 +251,44 @@
         []
       ]
     },
-    "Create Email Model": {
+    "Postgres - Teacher Template": {
+      "main": [
+        [
+          {
+            "node": "Create Teacher Email Model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres - Student Template": {
+      "main": [
+        [
+          {
+            "node": "Create Student Email Model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Student Email Model": {
+      "main": [
+        [
+          {
+            "node": "Send an Email to Student",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Teacher Email Model": {
       "main": [
         [
           {
             "node": "Send an Email to Teacher",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Send an Email to Student",
             "type": "main",
             "index": 0
           }
@@ -214,7 +302,7 @@
     "binaryMode": "separate",
     "availableInMCP": false
   },
-  "versionId": "d2e46642-4dd5-4cfc-a95c-358c773d29bb",
+  "versionId": "8f335042-5f04-4ff1-a6ff-340633e1fdb1",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "efb454df91df3676edc71e596456dc4a8d87897bd936e45bdced8fff39bb67a4"
